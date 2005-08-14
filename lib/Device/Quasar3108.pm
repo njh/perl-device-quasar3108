@@ -439,7 +439,6 @@ be notified of progress on your bug as I make changes.
 =head1 AUTHOR
 
 Nicholas Humfrey, njh@ecs.soton.ac.uk
-(I am a customer of Quasar of Electronics not an employee)
 
 
 =head1 COPYRIGHT AND LICENSE
