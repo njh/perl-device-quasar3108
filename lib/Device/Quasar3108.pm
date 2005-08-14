@@ -4,7 +4,7 @@ package Device::Quasar3108;
 #
 # Device::Quasar3108 - Control Quasar Electronics Kit Number 3108
 #
-# Nicholas Humfrey
+# Nicholas J Humfrey
 # njh@ecs.soton.ac.uk
 #
 # See the bottom of this file for the POD documentation. 
@@ -339,6 +339,9 @@ It seems very similar (identical?) to Carl's Electronic Kits
 number CK1610:
 http://www.electronickits.com/kit/complete/elec/ck1610.htm
 
+The perl module was tested on Debian Linux 3.1, but should work on 
+most POSIX systems.
+
 Relays are numbered 1 to 8 and inputs are numbers 1 to 4.
 
 
@@ -441,7 +444,7 @@ be notified of progress on your bug as I make changes.
 
 =head1 AUTHOR
 
-Nicholas Humfrey, njh@ecs.soton.ac.uk
+Nicholas J Humfrey, njh@ecs.soton.ac.uk
 
 
 =head1 COPYRIGHT AND LICENSE

@@ -10,6 +10,8 @@ It seems very similar (identical?) to Carl's Electronic Kits
 number CK1610:
 http://www.electronickits.com/kit/complete/elec/ck1610.htm
 
+The perl module was tested on Debian Linux 3.1, but should work on 
+most POSIX systems.
 
 
 INSTALLATION
@@ -32,7 +34,7 @@ INSTALLATION
 
 AUTHOR
 
-	Nicholas Humfrey, njh@ecs.soton.ac.uk
+	Nicholas J Humfrey, njh@ecs.soton.ac.uk
 
 
 COPYRIGHT AND LICENSE
