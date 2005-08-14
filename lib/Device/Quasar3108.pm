@@ -308,7 +308,7 @@ __END__
 
 =head1 NAME
 
-Device::Quasar3108 - Control Quasar Electronics Kit Number 3108
+Device::Quasar3108 - Control Quasar Electronics Serial I/O Module
 
 =head1 SYNOPSIS
 
@@ -328,7 +328,8 @@ Device::Quasar3108 - Control Quasar Electronics Kit Number 3108
 
 =head1 DESCRIPTION
 
-Quasar Electronics kit number 3108 (Serial Isolated I/O module).
+Device::Quasar3108 is a perl module for controlling 
+Quasar Electronics Serial Isolated I/O module (kit number 3108).
 The kit has eight relays and four opto-isolated inputs.
 http://www.quasarelectronics.com/3108.htm
 

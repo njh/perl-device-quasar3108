@@ -2,7 +2,7 @@ Device-Quasar3108 version 0.01
 ==============================
 
 Device::Quasar3108 is a perl module for controlling 
-Quasar Electronics kit number 3108 (Serial Isolated I/O module).
+Quasar Electronics Serial Isolated I/O module (kit number 3108).
 The kit has eight relays and four opto-isolated inputs.
 http://www.quasarelectronics.com/3108.htm
 
