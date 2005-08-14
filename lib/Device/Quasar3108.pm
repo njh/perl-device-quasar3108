@@ -2,7 +2,7 @@ package Device::Quasar3108;
 
 ################
 #
-# Device::Quasar3108 - Quasar Electronics Kit Number 3108
+# Device::Quasar3108 - Control Quasar Electronics Kit Number 3108
 #
 # Nicholas Humfrey
 # njh@ecs.soton.ac.uk
@@ -180,6 +180,7 @@ sub relay_status {
 	return $self->serial_read();
 }
 
+
 ## Get state of specified input
 sub input_status {
 	my $self=shift;
@@ -191,6 +192,9 @@ sub input_status {
 }
 
 
+
+
+### Internal Methods ###
 
 sub serial_write {
     my $self=shift;
@@ -232,6 +236,7 @@ sub serial_write {
  	my $echo = $self->serial_read( length($string) );
 	### FIXME: Could do error checking here ###
 }
+
 
 sub serial_read
 {
@@ -291,3 +296,159 @@ sub DESTROY {
     
     $self->{port}->close || carp "close serial port failed";
 }
+
+
+
+
+1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Device::Quasar3108 - Control Quasar Electronics Kit Number 3108
+
+=head1 SYNOPSIS
+
+  use Device::Quasar3108;
+
+  my $io = new Device::Quasar3108( '/dev/ttyS0' );
+
+  # Turn all relays off
+  $io->relay_set( 0 );
+  
+  # Turn relay 1 on
+  $io->relay_on( 1 );
+
+  # Get status of input 2
+  my $status = $io->input_status( 2 );
+  
+
+=head1 DESCRIPTION
+
+Quasar Electronics kit number 3108 (Serial Isolated I/O module).
+The kit has eight relays and four opto-isolated inputs.
+http://www.quasarelectronics.com/3108.htm
+
+It seems very similar (identical?) to Carl's Electronic Kits 
+number CK1610:
+http://www.electronickits.com/kit/complete/elec/ck1610.htm
+
+Relays are numbered 1 to 8 and inputs are numbers 1 to 4.
+
+
+=head2 METHODS
+
+=over 4
+
+
+=item $io = new Device::Quasar3108( $port, [$timeout] )
+
+The new method opens and configures the serial port to talk 
+to the Quasar 3108 serial module. It does not send any 
+commands to the kit itself. 
+
+Use 'ping()' to ensure that you are communicating with the 
+module correctly.
+
+
+=item $io->relay_on( $relay_number )
+
+Turns on the specified relay.
+Returns 1 if successful or 1 on failure.
+
+
+=item $io->relay_on( $relay_number )
+
+Turns off the specified relay.
+Returns 1 if successful or 1 on failure.
+
+
+=item $io->relay_toggle( $relay_number )
+
+Toggle the specified relay.
+Returns 1 if successful or 1 on failure.
+
+
+=item $io->relay_flash( $relay_number, [$period] )
+
+Turn the specified relay on then off again.
+The period the relay is turned on for is in seconds, 
+the default is 0.25 seconds.
+
+Returns 1 if successful or 1 on failure.
+
+
+=item $io->relay_set( $value )
+
+Set all the relays at once, using an 8-bit number.
+Returns 1 if successful or 1 on failure.
+
+
+=item $io->relay_status( $relay_number )
+
+Gets the current status (0/1) of the specified relay.
+Use relay number 0 to return the status of all the relays 
+as an 8-bit hexadecimal number.
+
+
+=item $io->input_status( $input_number )
+
+Gets the current status (0/1) of the specified opto-coupled input.
+Use input number 0 to return the status of all the inputs  
+as an 8-bit hexadecimal number (top nibble is always 0).
+
+
+=item $io->version()
+
+Returns the version number of the perl module.
+
+
+=item $io->firmware_version()
+
+Returns the firmware version string of the hardware.
+
+
+=item $io->ping()
+
+This method just sends a return character to the module 
+to check to see if it is still there. If the module returns the 
+command prompt correctly ('#'). Then this function returns 1, 
+otherwise it returns 0.
+
+
+=back
+
+=head1 SEE ALSO
+
+L<Device::Serial>
+
+L<http://www.quasarelectronics.com/3108.htm>
+
+
+=head1 BUGS
+
+Please report any bugs or feature requests to
+C<bug-device-quasar3108@rt.cpan.org>, or through the web interface at
+L<http://rt.cpan.org>.  I will be notified, and then you will automatically
+be notified of progress on your bug as I make changes.
+
+
+=head1 AUTHOR
+
+Nicholas Humfrey, njh@ecs.soton.ac.uk
+(I am a customer of Quasar of Electronics not an employee)
+
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2005 Nicholas J Humfrey
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.005 or,
+at your option, any later version of Perl 5 you may have available.
+
+=cut
+
