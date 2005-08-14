@@ -10,12 +10,13 @@ use Time::HiRes qw( sleep );
 
 my $io = new Device::Quasar3108( '/dev/ttyS0' );
 
-my $version = $io->firmware_version();
+$io->ping() or die "Module isn't there.";
 
+
+my $version = $io->firmware_version();
 print "Firmware Version: $version\n";
 
 
-$io->ping() or die "Module has gone away.";
 
 
 # Turn all relays off

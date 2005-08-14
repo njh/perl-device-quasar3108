@@ -219,9 +219,10 @@ sub serial_write {
 	};
 	
 	if ($@) {
-		die unless $@ eq "Timed out.\n";   # propagate unexpected errors
+		die unless $@ =~ /Timed out./;   # propagate unexpected errors
 		# timed out
 		carp "Timed out while writing to serial port.\n";
+		return undef;
  	}
  	
  	
@@ -265,9 +266,10 @@ sub serial_read
 	};
 	
 	if ($@) {
-		die unless $@ eq "Timed out.\n";   # propagate unexpected errors
+		die unless $@ =~ /Timed out./;   # propagate unexpected errors
 		# timed out
 		carp "Timed out while reading from serial port.\n";
+		return undef;
  	}
  
 	# Debugging: display what was read in
