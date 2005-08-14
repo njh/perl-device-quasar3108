@@ -10,6 +10,7 @@ my $build = Module::Build->new
 	requires => {
 		'perl'	=> '5.5.0',
 		'Test' => '1.00',
+		'Time::HiRes' => 0,
 		'Device::SerialPort' => '0.20',
 	}
 );

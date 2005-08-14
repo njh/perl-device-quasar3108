@@ -19,9 +19,9 @@ ok(1);
 
 
 # Now try creating a new Device::Quasar3108 object
-my $relay = Device::Quasar3108->new();
+my $io = Device::Quasar3108->new();
 
-ok( defined $relay );
+ok( defined $io );
 
 exit;
 
