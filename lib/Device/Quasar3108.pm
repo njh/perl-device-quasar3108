@@ -18,7 +18,7 @@ use Device::SerialPort;
 use Time::HiRes qw( time sleep alarm );
 use Carp;
 
-$VERSION="0.02";
+$VERSION="0.03";
 $DEFAULT_TIMEOUT=5;		# Default timeout is 5 seconds
 $DEFAULT_PERIOD=0.25;	# Default flash period
 
@@ -53,9 +53,12 @@ sub new {
 	$port->databits(8)       || croak ("Failed to set data bits");
 	$port->stopbits(1)       || croak ("Failed to set stop bits");
 	$port->handshake("none") || croak ("Failed to set hardware handshaking");
+#	$port->stty_echo(0)      || croak ("Failed to turn off echo");
 	$port->write_settings()  || croak ("Failed to write settings");
+
 	$port->read_char_time(0);     # don't wait for each character
-	$port->read_const_time(1000); # 1 second per unfulfilled "read" call
+	$port->read_const_time(500);  # 1/2 second per unfulfilled "read" call
+
 
 
 
@@ -66,6 +69,7 @@ sub new {
     	debug => 0,
     };
     bless $self, $class;
+
 
     return $self;
 }
@@ -177,7 +181,18 @@ sub relay_status {
 	$num = 0 unless defined ($num);
 	
 	$self->serial_write( 'S'.$num );
-	return $self->serial_read();
+	
+	
+	# Return the result
+	my $status;
+	if ($num==0) { $status = $self->serial_read( 4 ); }
+	else { $status = $self->serial_read( 3 ); }
+	
+	# Look for a '#' prompt on the end
+	my $ok = $self->serial_read( 1 );
+	if ($ok ne '#') { warn "relay_status() failed   :-("; }
+	
+	return $status;
 }
 
 
@@ -188,7 +203,18 @@ sub input_status {
 	$num = 0 unless defined ($num);
 	
 	$self->serial_write( 'I'.$num );
-	return $self->serial_read();
+	
+	
+	# Return the result
+	my $status;
+	if ($num==0) { $status = $self->serial_read( 4 ); }
+	else { $status = $self->serial_read( 3 ); }
+	
+	# Look for a '#' prompt on the end
+	my $ok = $self->serial_read( 1 );
+	if ($ok ne '#') { warn "input_status() failed   :-("; }
+	
+	return $status;
 }
 
 
@@ -285,11 +311,9 @@ sub serial_read
  		return $string;
  	} else {
  		# Remove whitespace from start and end
-		($string) = ($string =~ /^\s*(.*)\s*\#$/);
+		($string) = ($string =~ /^\s*(.*?)\s*\#?$/);
  		return $string;
  	}
- 	
-	return $string;
 }
 
 
