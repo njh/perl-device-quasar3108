@@ -18,7 +18,7 @@ use Device::SerialPort;
 use Time::HiRes qw( time sleep alarm );
 use Carp;
 
-$VERSION="0.01";
+$VERSION="0.02";
 $DEFAULT_TIMEOUT=5;		# Default timeout is 5 seconds
 $DEFAULT_PERIOD=0.25;	# Default flash period
 
@@ -363,19 +363,19 @@ module correctly.
 =item $io->relay_on( $relay_number )
 
 Turns on the specified relay.
-Returns 1 if successful or 1 on failure.
+Returns 1 if successful or 0 on failure.
 
 
 =item $io->relay_on( $relay_number )
 
 Turns off the specified relay.
-Returns 1 if successful or 1 on failure.
+Returns 1 if successful or 0 on failure.
 
 
 =item $io->relay_toggle( $relay_number )
 
 Toggle the specified relay.
-Returns 1 if successful or 1 on failure.
+Returns 1 if successful or 0 on failure.
 
 
 =item $io->relay_flash( $relay_number, [$period] )
@@ -384,13 +384,13 @@ Turn the specified relay on then off again.
 The period the relay is turned on for is in seconds, 
 the default is 0.25 seconds.
 
-Returns 1 if successful or 1 on failure.
+Returns 1 if successful or 0 on failure.
 
 
 =item $io->relay_set( $value )
 
 Set all the relays at once, using an 8-bit number.
-Returns 1 if successful or 1 on failure.
+Returns 1 if successful or 0 on failure.
 
 
 =item $io->relay_status( $relay_number )
@@ -421,7 +421,7 @@ Returns the firmware version string of the hardware.
 
 This method just sends a return character to the module 
 to check to see if it is still there. If the module returns the 
-command prompt correctly ('#'). Then this function returns 1, 
+command prompt correctly ('#'), then this function returns 1, 
 otherwise it returns 0.
 
 
