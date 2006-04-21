@@ -1,5 +1,8 @@
 Revision history for Perl extension Device::Quasar3108.
 
+0.04  Fri Apr 21 22:44:13 BST 2006
+	Added Makefile.PL
+
 0.03  Tue Oct  4 21:27:16 BST 2005
 	Performance improvements for relay_status() and input_status()
 

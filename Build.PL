@@ -7,6 +7,9 @@ my $build = Module::Build->new
 	build_requires => {
 		'Module::Build' => '0.20'
 	},
+	
+	create_makefile_pl => 'passthrough',
+	
 	requires => {
 		'perl'	=> '5.5.0',
 		'Test' => '1.00',

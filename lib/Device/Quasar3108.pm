@@ -18,7 +18,7 @@ use Device::SerialPort;
 use Time::HiRes qw( time sleep alarm );
 use Carp;
 
-$VERSION="0.03";
+$VERSION="0.04";
 $DEFAULT_TIMEOUT=5;		# Default timeout is 5 seconds
 $DEFAULT_PERIOD=0.25;	# Default flash period
 
