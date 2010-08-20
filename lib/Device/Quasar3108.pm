@@ -5,7 +5,7 @@ package Device::Quasar3108;
 # Device::Quasar3108 - Control Quasar Electronics Kit Number 3108
 #
 # Nicholas J Humfrey
-# njh@ecs.soton.ac.uk
+# njh@cpan.org
 #
 # See the bottom of this file for the POD documentation. 
 #
@@ -468,7 +468,7 @@ be notified of progress on your bug as I make changes.
 
 =head1 AUTHOR
 
-Nicholas J Humfrey, njh@ecs.soton.ac.uk
+Nicholas J Humfrey, njh@cpan.org
 
 
 =head1 COPYRIGHT AND LICENSE
